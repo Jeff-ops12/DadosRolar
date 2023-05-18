@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sorteio de Números</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    #history {
+      text-align: left;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sorteio de Números</h1>
+    <label for="number">Digite um número:</label>
+    <input type="text" id="number" placeholder="Número" />
+    <br />
+    <label for="name">Digite seu nome:</label>
+    <input type="text" id="name" placeholder="Nome" />
+    <br />
+    <button onclick="rollNumber()">Sortear</button>
+    <div id="history"></div>
+  </div>
+
+  <script>
+    function rollNumber() {
+      var numberInput = document.getElementById("number");
+      var nameInput = document.getElementById("name");
+      var number = parseInt(numberInput.value);
+      var name = nameInput.value;
+
+      if (isNaN(number) || number <= 0) {
+        alert("Digite um número válido maior que zero.");
+        return;
+      }
+
+      var randomNumber = Math.floor(Math.random() * number) + 1;
+
+      var historyDiv = document.getElementById("history");
+      var entry = document.createElement("p");
+      entry.innerHTML = name + " sorteou o número: " + randomNumber;
+      historyDiv.insertBefore(entry, historyDiv.firstChild);
+
+      numberInput.value = "";
+      nameInput.value = "";
+    }
+  </script>
+</body>
+</html>
